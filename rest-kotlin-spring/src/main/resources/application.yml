@@ -1,2 +1,12 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/restSpringBootKotlin?useTimezone=true$serverTimezone=UTC
+    username: root
+    password: 91477229
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
 server:
   port : 8081

@@ -1,5 +1,6 @@
-package com.rita.exceptions
+package com.rita.exceptions.handler
 
+import com.rita.exceptions.ExceptionsResponse
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ControllerAdvice
@@ -25,11 +26,11 @@ class CustomizedResponseEntityExceptionHandler: ResponseEntityExceptionHandler()
             request.getDescription(false)
         )
 
-        return ResponseEntity<ExceptionsResponse>(exceptionsResponse, HttpStatus.INTERNAL_SERVER_ERROR)
+        return ResponseEntity<ExceptionsResponse>(exceptionsResponse, HttpStatus.NOT_FOUND)
     }
 
-    @ExceptionHandler(UnsuportedMathOperationException::class)
-    fun handleBadRequestExceptions(ex: Exception, request: WebRequest): ResponseEntity<ExceptionsResponse>{
+    @ExceptionHandler(com.rita.exceptions.ResourceNotfoundException::class)
+    fun ResourceNotfoundException(ex: Exception, request: WebRequest): ResponseEntity<ExceptionsResponse>{
         val exceptionsResponse = ExceptionsResponse(
             Date(),
             ex.message,
